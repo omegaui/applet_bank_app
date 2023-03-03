@@ -1,15 +1,17 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Scanner;
+
 public class App extends JFrame {
     public App() {
-        super("Insurance Management System");
-        setSize(500, 400);
+        super("IMS");
+        setSize(600, 500);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -24,7 +26,7 @@ public class App extends JFrame {
         CardLayout layout = new CardLayout();
         setLayout(layout);
         getContentPane().setLayout(layout);
-        getContentPane().setBackground(Color.white);
+        getContentPane().setBackground(Color.black);
 
         initHomeScreen();
         initLoginScreen();
@@ -34,20 +36,19 @@ public class App extends JFrame {
     }
 
     void setUI(Component component) {
-        component.setBackground(Color.WHITE);
-        component.setForeground(Color.BLACK);
+        component.setBackground(Color.BLACK);
+        component.setForeground(Color.WHITE);
         component.setFont(new Font("Consolas", Font.BOLD, 14));
 
         if(component instanceof JTextField){
-            component.setBackground(Color.LIGHT_GRAY);
-            component.setForeground(Color.DARK_GRAY);
-        } else if(component instanceof JTextArea){
             component.setBackground(Color.GRAY);
+            component.setForeground(Color.LIGHT_GRAY);
+        } else if(component instanceof JTextArea){
+            component.setBackground(Color.DARK_GRAY);
             component.setForeground(Color.WHITE);
             component.setFont(new Font("Consolas", Font.PLAIN, 14));
         } else if(component instanceof JButton){
-            ((JButton) component).setBorder(null);
-            ((JButton) component).setFocusable(false);
+            component.setFocusable(false);
         }
     }
 
@@ -55,7 +56,7 @@ public class App extends JFrame {
         Panel homeScreenPanel = new Panel(null);
 
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(getWidth()/2 - 100/2, 50, 100, 40);
+        loginButton.setBounds(getWidth()/2 - 100/2, 250, 100, 40);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +66,7 @@ public class App extends JFrame {
         homeScreenPanel.add(loginButton);
 
         JButton registerButton = new JButton("Register");
-        registerButton.setBounds(getWidth()/2 - 100/2, 100, 100, 40);
+        registerButton.setBounds(getWidth()/2 - 100/2, 300, 100, 40);
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,7 +76,7 @@ public class App extends JFrame {
         homeScreenPanel.add(registerButton);
 
         JButton exitButton = new JButton("Exit");
-        exitButton.setBounds(getWidth()/2 - 100/2, 150, 100, 40);
+        exitButton.setBounds(getWidth()/2 - 100/2, 350, 100, 40);
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -90,7 +91,7 @@ public class App extends JFrame {
             JLabel logo = new JLabel(new ImageIcon(
                     ImageIO.read(new File("logo.png"))
             ));
-            logo.setBounds(getWidth()/2 - 94/2, 200, 94, 94);
+            logo.setBounds(getWidth()/2 - 96/2, 100, 96, 96);
             homeScreenPanel.add(logo);
 
             setUI(loginButton);
@@ -107,11 +108,13 @@ public class App extends JFrame {
         final JTextField idField = new JTextField("Your ID");
         idField.setBounds(getWidth()/2 - 200/2, 50, 200, 40);
         idField.setHorizontalAlignment(SwingConstants.CENTER);
+        idField.setBorder(BorderFactory.createTitledBorder("Enter your ID"));
         loginScreenPanel.add(idField);
 
         final JTextField passwordField = new JTextField("Your Password");
         passwordField.setBounds(getWidth()/2 - 200/2, 100, 200, 40);
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+        passwordField.setBorder(BorderFactory.createTitledBorder("Enter your Password"));
         loginScreenPanel.add(passwordField);
 
         JButton loginButton = new JButton("Login");
@@ -153,11 +156,13 @@ public class App extends JFrame {
         final JTextField idField = new JTextField("Your ID");
         idField.setBounds(getWidth()/2 - 200/2, 50, 200, 40);
         idField.setHorizontalAlignment(SwingConstants.CENTER);
+        idField.setBorder(BorderFactory.createTitledBorder("Enter your ID"));
         registerScreenPanel.add(idField);
 
         final JTextField passwordField = new JTextField("Your Password");
         passwordField.setBounds(getWidth()/2 - 200/2, 100, 200, 40);
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+        passwordField.setBorder(BorderFactory.createTitledBorder("Enter your Password"));
         registerScreenPanel.add(passwordField);
 
         JButton registerButton = new JButton("Register");
@@ -207,7 +212,7 @@ public class App extends JFrame {
         loggedInScreenPanel.add(disclaimerArea);
 
         JButton buyButton = new JButton("Buy");
-        buyButton.setBounds(getWidth()/2 - 100/2, 200, 100, 40);
+        buyButton.setBounds(getWidth()/2 - 100/2, 300, 100, 40);
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -218,7 +223,7 @@ public class App extends JFrame {
         loggedInScreenPanel.add(buyButton);
 
         JButton renewButton = new JButton("Renew");
-        renewButton.setBounds(getWidth()/2 - 100/2, 250, 100, 40);
+        renewButton.setBounds(getWidth()/2 - 100/2, 350, 100, 40);
         renewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -234,7 +239,7 @@ public class App extends JFrame {
         loggedInScreenPanel.add(renewButton);
 
         JButton cancelButton = new JButton("Cancel");
-        cancelButton.setBounds(getWidth()/2 - 100/2, 300, 100, 40);
+        cancelButton.setBounds(getWidth()/2 - 100/2, 400, 100, 40);
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
