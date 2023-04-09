@@ -6,7 +6,6 @@ import java.io.*;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Scanner;
-
 public class App extends JFrame {
     public App() {
         super("Insurance Management System");
