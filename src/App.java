@@ -1,5 +1,4 @@
-package insurance;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,9 +87,19 @@ public class App extends JFrame {
 
         add(homeScreenPanel, "home-screen");
 
-        setUI(loginButton);
-        setUI(registerButton);
-        setUI(exitButton);
+        try {
+            JLabel logo = new JLabel(new ImageIcon(
+                    ImageIO.read(new File("logo.png"))
+            ));
+            logo.setBounds(getWidth()/2 - 94/2, 200, 94, 94);
+            homeScreenPanel.add(logo);
+
+            setUI(loginButton);
+            setUI(registerButton);
+            setUI(exitButton);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     void initLoginScreen() {
